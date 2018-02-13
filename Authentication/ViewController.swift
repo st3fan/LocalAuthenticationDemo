@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var privacySwitch: UISwitch!
     @IBOutlet weak var captionLabel: UILabel!
 
+    @IBOutlet weak var titleLabel: UILabel!
 
 
     override func viewDidLoad() {
@@ -31,6 +32,15 @@ class ViewController: UIViewController {
             privacySwitch.isEnabled = false
         } else {
             privacySwitch.isOn = UserDefaults.standard.bool(forKey: "PrivacySwitch")
+
+            switch context.biometryType {
+            case .faceID:
+                titleLabel.text = "Use Face ID"
+            case .touchID:
+                titleLabel.text = "Use Touch ID"
+            case .none:
+                titleLabel.text = "Use Passcode"
+            }
         }
     }
 
